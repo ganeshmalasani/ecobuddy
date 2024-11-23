@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoBuddy</title>
+</head>
+<body>
+    <h1>EcoBuddy</h1>
+    <form action="/generate_image" method="post" enctype="multipart/form-data">
+
+        <input type="file" name="uploaded_image" accept="image/*">
+
+        <label for="material">Enter the intended usage</label>
+        <input type="text" name="usage">
+        
+
+        <input type="submit" value="Generate Image">
+    </form>
+</body>
+</html>

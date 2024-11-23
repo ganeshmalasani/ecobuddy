@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Working</title>
+</head>
+<body>
+    <h1>Working</h1>
+
+    {% if img_path %}
+    <p>{{img_path}}</p>
+     <img src="{{img_path}}" alt="">
+    {% endif %}
+
+    <h2>Steps to Create the product</h2>
+    <p>
+        {{final_steps}}
+    </p>
+
+    <!-- <p>Are you satisfied with the image generated</p>
+    <form action="/generate_steps">
+        <input type="submit" value="Yes, Generate the Steps">
+    </form>
+    <form action="">
+        <input type="submit" value="No, Generate new image">
+    </form> -->
+</body>
+</html>

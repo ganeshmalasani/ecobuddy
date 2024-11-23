@@ -104,6 +104,21 @@ def image_generation():
     print("image generation time taken",image_generation_time)
     print("Steps generation time taken",steps_generation_time)
     print("total time taken:",total_time)
+
+    file_path = f"prompts&content/{img_id}.json"
+    data = {
+    'Image id': img_id,
+    'Objects identified': items,
+    'Image Generation Prompt': image_generation_prompt,
+    'Steps': steps,
+    'List and image prompt generation time': list_generation_time,
+    'Image generation time taken': image_generation_time,
+    'Steps generation time taken': steps_generation_time,
+    'Total time taken': total_time
+    }
+    with open(file_path,'w') as file:
+        json.dump(data, file, indent=4)
+
     return render_template('result.html',img_path=final_path,final_steps=steps)
 
 

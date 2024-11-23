@@ -4,6 +4,7 @@ import google.generativeai as genai
 import random
 import string
 import json
+import time
 
 app= Flask(__name__)
 app.secret_key = 'as5efA2y' 
@@ -12,8 +13,6 @@ def generate_random_string():
     characters = string.ascii_letters + string.digits  
     random_string = ''.join(random.choices(characters, k=5)) 
     return random_string
-
-
 
 
 def generate_list(path,usage):
@@ -69,31 +68,42 @@ def home_page():
 
 @app.route("/generate_image",methods=['POST'])
 def image_generation():
-    print("checkpoint 1")  
+    print("checkpoint 1") 
+    start_time=time.time() 
 
     usage=request.form['usage']     
     
     #Generating items in the uploaded image
+    list_generation_time=time.time()
     input_image_file=request.files['uploaded_image']
     input_image_path="./input_images/"+input_image_file.filename
     input_image_file.save(input_image_path)
     items,image_generation_prompt=generate_list(input_image_path,usage)
-
-    #Generating image based on the usage and the list of items
-    client = InferenceClient("black-forest-labs/FLUX.1-dev", token="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")
+    list_generation_time=time.time()-list_generation_time
     
+    #Generating image based on the usage and the list of items
+    image_generation_time=time.time()
+    client = InferenceClient("black-forest-labs/FLUX.1-dev", token="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")  
+
     # image_generation_prompt=f"Generate image using {items} for {usage}"
     generated_image = client.text_to_image(image_generation_prompt)
+    image_generation_time=time.time()-image_generation_time
     img_id=generate_random_string()
     generated_image_path="C:\\Users\\Ganesh\\Desktop\\Thales Hackathon\\flask app\\static\\generated_image\\"+img_id+".jpg"
     generated_image.save(generated_image_path)
 
     #Generate steps for the image generated
-    steps=generate_steps(generated_image_path,items)   
+    steps_generation_time=time.time()
+    steps=generate_steps(generated_image_path,items) 
+    steps_generation_time=time.time()-steps_generation_time  
 
     final_path=url_for('static', filename=f"generated_image/{img_id}.jpg")
     
-
+    total_time=time.time()-start_time
+    print("List and image prompt generation time",list_generation_time)
+    print("image generation time taken",image_generation_time)
+    print("Steps generation time taken",steps_generation_time)
+    print("total time taken:",total_time)
     return render_template('result.html',img_path=final_path,final_steps=steps)
 
 

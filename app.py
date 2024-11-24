@@ -125,11 +125,15 @@ def image_generation():
     list_generation_time=time.time()-list_generation_time
     
     #Generating image based on the usage and the list of items
-    image_generation_time=time.time()
-    client = InferenceClient("black-forest-labs/FLUX.1-dev", token="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")  
 
-    # image_generation_prompt=f"Generate image using {items} for {usage}"
+    
+    image_generation_time=time.time()
+    # client = InferenceClient("black-forest-labs/FLUX.1-dev", token="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")
+    # generated_image = client.text_to_image(image_generation_prompt)  
+
+    client = InferenceClient("stabilityai/stable-diffusion-3.5-large-turbo", token="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")
     generated_image = client.text_to_image(image_generation_prompt)
+    
     image_generation_time=time.time()-image_generation_time
     img_id=generate_random_string()
     generated_image_path="./static/generated_image/"+img_id+".jpg"

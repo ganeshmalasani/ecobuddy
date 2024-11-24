@@ -5,6 +5,9 @@ import random
 import string
 import json
 import time
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Image
+from reportlab.lib.styles import getSampleStyleSheet
 
 app= Flask(__name__)
 app.secret_key = 'as5efA2y' 
@@ -14,9 +17,33 @@ def generate_random_string():
     random_string = ''.join(random.choices(characters, k=5)) 
     return random_string
 
+def generate_pdf(image_path, contents):
+
+    filtered_data = dict(list(contents.items())[:-4])    
+
+    img_id=contents['Image id']
+    generate_pdf_path="C:\\Users\\Ganesh\\Desktop\\Thales Hackathon\\flask app\\static\\pdfs\\"+img_id+".pdf"
+
+    doc = SimpleDocTemplate(generate_pdf_path, pagesize=letter)
+
+    story = []
+
+    story.append(Image(image_path, width=300, height=300))
+    styles = getSampleStyleSheet()
+
+    for key, value in filtered_data.items():
+        text = f"<b>{key}:</b> {value}"
+        story.append(Paragraph(text, styles["Normal"]))
+
+    pdf_path=url_for('static', filename=f"pdfs/{img_id}.pdf")
+    doc.build(story)
+    print("PDF Generated")
+    return pdf_path
+
 
 def generate_list(path,usage):
-    GOOGLE_API_KEY = "AIzaSyDPAMOiVR0A_hAchpAGG5hcctKrvyO2Ymk"
+    # GOOGLE_API_KEY = "AIzaSyDPAMOiVR0A_hAchpAGG5hcctKrvyO2Ymk" exhausted 
+    GOOGLE_API_KEY = "AIzaSyCPLt6MNgpmvVRAnNSPl-dIeWt_99Tcsus"
     genai.configure(api_key=GOOGLE_API_KEY)
     image_api=genai.upload_file(path) 
     # image_generation_llm_prompt=""
@@ -27,7 +54,7 @@ def generate_list(path,usage):
 
     llm_prompt = f"""
 Task 1: Identify all objects in the image and provide a list of items with their materials. Use a simple list format like: "plastic bag, newspaper, wooden chair". No sentences.
-Task 2: Suggest a creative idea for using the identified items for {usage}. Provide this as an image-generation prompt.
+Task 2: Suggest a creative idea for using the identified items for {usage}. Provide this as an image-generation prompt(very concise prompt no greater than 15 words).
 Output format:
 {{
     "items_list": ["plastic bag", "newspaper", "wooden chair", ...],
@@ -49,11 +76,12 @@ Output format:
     return list_of_items,image_generation_llm_prompt
 
 def generate_steps(path,items):
-    GOOGLE_API_KEY = "AIzaSyBBuIZMq3pec8KZ1oNTtXtPNfh9r-I4vME"
+    # GOOGLE_API_KEY = "AIzaSyBBuIZMq3pec8KZ1oNTtXtPNfh9r-I4vME" exhausted
+    GOOGLE_API_KEY = "AIzaSyCy4v_Yc_3xprx-QqJ9YumPiCYEFA_i9p0"
     genai.configure(api_key=GOOGLE_API_KEY)
     image_api=genai.upload_file(path) 
 
-    llm_prompt=f"give steps to Generate the product given in image using these items: {items} "
+    llm_prompt=f"give steps to Generate the product given in image using these items: {items}. keep in mind, theme is upcycling waste items."
 
     
     model = genai.GenerativeModel("gemini-1.5-flash")
@@ -119,7 +147,9 @@ def image_generation():
     with open(file_path,'w') as file:
         json.dump(data, file, indent=4)
 
-    return render_template('result.html',img_path=final_path,final_steps=steps)
+    pdf_path= generate_pdf(generated_image_path,data)
+
+    return render_template('result.html',img_path=final_path,final_steps=steps,download_pdf=pdf_path)
 
 
 if __name__== "__main__":       

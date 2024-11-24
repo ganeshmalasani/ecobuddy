@@ -3,27 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Working</title>
+    <title>Result</title>
+    <style>
+         body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            flex-direction: column;
+          
+        }
+        .heading{
+            font-family: 'Circular Std Medium';
+            font-size: 45px;
+            margin: 0;
+            color: #45a049;
+            
+        }
+        .outer-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+
+           
+          
+        }
+        
+        .image-generated{
+            width: 38vw;
+            border-radius: 20px;
+            margin-left: 5px;
+            margin-right: 10px;
+            
+        }
+
+        .steps-generated{
+            width: 55vw;
+            background-color: #8ecd91;
+            border-radius: 19px;
+            padding: 17px;
+            
+            
+            height: 75vh;
+            display: flex;
+           align-items: center;
+            flex-direction: column;
+            overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 100%; /* Confine the content within the div's height */
+    padding-right: 10px; /* Add padding to prevent content from being cut off by the scrollbar */
+    scrollbar-width: thin;
+        }
+        .steps-generated>h2{
+            margin-top: 5px;
+            font-family:'Circular Std Medium' ;
+        }
+        .steps-generated>p{
+            
+            font-family:'Poppins' ;
+        }
+        .download-btn {
+            font-family: Poppins;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        .download-btn:hover {
+            background-color: #45a049;
+        }
+        .top{
+            width: 94vw;
+            display: flex;
+            align-items:center ;
+            justify-content: space-between;
+            margin-top: 15px;
+
+        }
+        .download-logo{
+            height: 35px;
+            margin-right: 5px;
+            filter: invert(1);
+
+        }
+
+
+    </style>
 </head>
 <body>
-    <h1>Working</h1>
+    <div class="top">
+    <h1 class="heading">Result</h1>
+    <a href="{{ download_pdf }}" class="download-btn" download>
+        <img src="../static/upload_logo.png" class="download-logo" alt="Download Icon">Download as PDF</a>
+</div>
 
+
+    <div class="outer-container">   
+        
     {% if img_path %}
-    <p>{{img_path}}</p>
-     <img src="{{img_path}}" alt="">
+         <img src="{{img_path}}" alt="" class="image-generated">
     {% endif %}
 
+
+<div class="steps-generated">
+    
     <h2>Steps to Create the product</h2>
     <p>
-        {{final_steps}}
+        {{final_steps}}         
     </p>
+</div>
 
-    <!-- <p>Are you satisfied with the image generated</p>
-    <form action="/generate_steps">
-        <input type="submit" value="Yes, Generate the Steps">
-    </form>
-    <form action="">
-        <input type="submit" value="No, Generate new image">
-    </form> -->
+</div>
+
+   
 </body>
 </html>

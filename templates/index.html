@@ -56,7 +56,7 @@
             
         }
         .button-style:hover{
-            background-color: #00b96c;
+            background-color: #167c1b;
             cursor: pointer;
 
         }
@@ -137,17 +137,28 @@
         <!-- <input type="file" name="uploaded_image" accept="image/*"> -->
         <div class="file-upload">
             <input type="file" name="uploaded_image" id="uploadedImage" accept="image/*">
-            <label for="uploadedImage" class="custom-file-button">Choose File</label>
+            <label for="uploadedImage" class="custom-file-button">Upload Image</label>
             <span class="file-name">No file chosen</span>
         </div>
         
 
-        <label for="material" class="body-font">Enter the intended usage</label>
+        <label for="material" class="body-font">ENTER THE INTENDED USAGE</label>
         <input type="text" name="usage" class="text-box">
         
 
         <input  type="submit" value="Generate Image" class="button-style">
     </form>
 </div>
+
+<script>
+    const fileInput = document.getElementById("uploadedImage");
+const fileNameSpan = document.querySelector(".file-name");
+
+fileInput.addEventListener("change", function () {
+    const fileName = this.files[0]?.name || "No file chosen";
+    fileNameSpan.textContent = fileName;
+});
+
+</script>
 </body>
 </html>

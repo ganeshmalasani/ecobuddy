@@ -1,0 +1,14 @@
+{
+    "Image id": "G3MAs",
+    "Objects identified": [
+        "plastic water bottle",
+        "plastic bottle cap",
+        "paper label"
+    ],
+    "Image Generation Prompt": "Chandelier made of plastic water bottles, illuminated",
+    "Steps": "```html\n<ol>\n  <li><strong>Clean and dry the plastic water bottles and remove any existing labels.</strong></li>\n  <li><strong>Cut the plastic water bottles to desired shapes and sizes, creating components for the chandelier structure.  This may involve removing the bottom portion of some bottles.</strong></li>\n  <li><strong>Attach the cut bottle pieces together using strong adhesive, creating a frame that mimics the shape of a chandelier.</strong></li>\n  <li><strong>Attach the plastic bottle caps to the bottle pieces, if needed to secure joints or add design elements.</strong></li>\n  <li><strong>Wrap the paper labels around the bottles or cut and attach sections to decorate and cover some areas of the structure.</strong></li>\n  <li><strong>Attach a pre-existing chandelier chain or create one from additional recycled materials (not provided in the list) to hang the structure.</strong></li>\n</ol>\n\n```",
+    "List and image prompt generation time": 26.247357606887817,
+    "Image generation time taken": 111.96061062812805,
+    "Steps generation time taken": 17.1454017162323,
+    "Total time taken": 155.37232160568237
+}

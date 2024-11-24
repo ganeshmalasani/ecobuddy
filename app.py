@@ -66,15 +66,13 @@ def generate_list(path,usage):
     # Task2 : Give creative idea on how to use the items in the image for use in {usage}(give image generation prompt which i can give
     # it to a image generation model) give json like thing so that i can split those 2 tasks PS: keep in mind these domains: Defence and Security, Aeronatics and SPace, Cybersecurity and DIgital Identity"
 
-    llm_prompt = f"""
-Task 1: Identify all objects in the image and provide a list of items with their materials. Use a simple list format like: "plastic bag, newspaper, wooden chair". No sentences.
-Task 2: Suggest a creative idea for using the identified items for {usage}. Provide this as an image-generation prompt(very concise prompt no greater than 15 words).
-Output format:
-{{
-    "items_list": ["plastic bag", "newspaper", "wooden chair", ...],
-    "image_prompt": "image generation prompt"
-}}
-"""
+    llm_prompt=f"""Identify objects and materials in image, list items ('item, material'). Suggest creative {usage} idea in ≤15-word image-generation prompt. 
+    Format: {{
+    "items_list": ["item, material", ...],
+    "image_prompt": "prompt"
+    }}
+    """
+
     
     model = genai.GenerativeModel("gemini-1.5-pro")
     result = model.generate_content([llm_prompt,image_api])

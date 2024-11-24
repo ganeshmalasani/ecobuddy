@@ -36,7 +36,8 @@ def generate_pdf(image_path, contents):
     filtered_data = dict(list(contents.items())[:-4])    
 
     img_id=contents['Image id']
-    generate_pdf_path="C:\\Users\\Ganesh\\Desktop\\Thales Hackathon\\flask app\\static\\pdfs\\"+img_id+".pdf"
+    
+    generate_pdf_path="./static/pdfs/"+img_id+".pdf"
 
     doc = SimpleDocTemplate(generate_pdf_path, pagesize=letter)
 
@@ -131,7 +132,7 @@ def image_generation():
     generated_image = client.text_to_image(image_generation_prompt)
     image_generation_time=time.time()-image_generation_time
     img_id=generate_random_string()
-    generated_image_path="C:\\Users\\Ganesh\\Desktop\\Thales Hackathon\\flask app\\static\\generated_image\\"+img_id+".jpg"
+    generated_image_path="./static/generated_image/"+img_id+".jpg"
     generated_image.save(generated_image_path)
 
     #Generate steps for the image generated

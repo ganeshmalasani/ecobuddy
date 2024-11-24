@@ -4,18 +4,161 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoBuddy</title>
+    <style>
+        *{
+         font-family: 'Poppins', Tahoma, Geneva, Verdana, sans-serif;   
+        }
+        body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../static/3221367.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.7; /* Adjust this value for the desired opacity */
+    z-index: -1; /* Ensure it stays behind all content */
+}
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #000000;
+            
+          
+        }
+        .heading{
+            font-family: 'Circular Std Medium';
+        }
+        .container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-color: #2cc295;
+            background-color: #00df82a4;
+            background-color: rgba(255, 255, 255, 0.751);
+            border-radius: 25px;
+            backdrop-filter: blur(25px);
+            padding: 15px;
+            box-shadow:
+  0px 0px 2.2px -3px rgba(0, 0, 0, 0.036),
+  0px 0px 5.3px -3px rgba(0, 0, 0, 0.028),
+  0px 0px 10px -3px rgba(0, 0, 0, 0.023),
+  0px 0px 17.9px -3px rgba(0, 0, 0, 0.036),
+  0px 0px 33.4px -3px rgba(0, 0, 0, 0.086),
+  0px 0px 80px -3px rgba(0, 0, 0, 0.25)
+;
+            
+        }
+        .button-style:hover{
+            background-color: #167c1b;
+            cursor: pointer;
+
+        }
+        .button-style{
+            font-family: 'Circular Std Medium';
+            color: aliceblue;
+            border-radius: 100px;
+            font-size: 20px;
+            background-color: #45A049;
+            padding: 10px;
+            border: none;
+        }
+        .text-box{
+            border-radius: 5px;
+            height: 40px;
+            border: none;
+
+        }
+        .logo{
+            
+            height: 250px;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            width: 30vw;
+        }
+        form>*{
+            margin: 10px;
+        }
+        label{
+            font-size: 20px;
+            margin-bottom: 0px;
+        }
+        input{
+            margin-top: 2px;
+        }
+
+        input[type="file"] {
+    display: none;
+}
+
+/* Style the custom file upload button */
+.custom-file-button {
+    
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.custom-file-button:hover {
+    background-color: #45A049; /* Darker green */
+}
+
+/* Style for the "No file chosen" text */
+.file-name {
+    margin-left: 15px;
+    font-size: 14px;
+    color: #555; /* Gray */
+}
+    </style>
 </head>
 <body>
-    <h1>EcoBuddy</h1>
+    <div class="container">
+        <img src="../static/logo.png" alt="" class="logo">
+    <!-- <h1 class="heading">EcoBuddy</h1> -->
     <form action="/generate_image" method="post" enctype="multipart/form-data">
 
-        <input type="file" name="uploaded_image" accept="image/*">
-
-        <label for="material">Enter the intended usage</label>
-        <input type="text" name="usage">
+        <!-- <input type="file" name="uploaded_image" accept="image/*"> -->
+        <div class="file-upload">
+            <input type="file" name="uploaded_image" id="uploadedImage" accept="image/*">
+            <label for="uploadedImage" class="custom-file-button">Upload Image</label>
+            <span class="file-name">No file chosen</span>
+        </div>
         
 
-        <input type="submit" value="Generate Image">
+        <label for="material" class="body-font">ENTER THE INTENDED USAGE</label>
+        <input type="text" name="usage" class="text-box">
+        
+
+        <input  type="submit" value="Generate Image" class="button-style">
     </form>
+</div>
+
+<script>
+    const fileInput = document.getElementById("uploadedImage");
+const fileNameSpan = document.querySelector(".file-name");
+
+fileInput.addEventListener("change", function () {
+    const fileName = this.files[0]?.name || "No file chosen";
+    fileNameSpan.textContent = fileName;
+});
+
+</script>
 </body>
 </html>

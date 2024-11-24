@@ -1,0 +1,12 @@
+{
+    "Image id": "hQHpT",
+    "Objects identified": [
+        "tote bag, canvas"
+    ],
+    "Image Generation Prompt": "tote bag, canvas, embroidered with colorful flowers and bees",
+    "Steps": "```html\n<ol>\n  <li><b>Gather Materials:</b> <ul><li>One plain canvas tote bag.</li> <li>Embroidery floss in various colors (pink, yellow, green, blue, black).</li> <li>Embroidery needle.</li> <li>Embroidery hoop (optional, but recommended for easier stitching).</li></ul></li>\n  <li><b>Design Transfer:</b> <ul><li>Sketch or print a design of bees and flowers onto paper.</li><li>Using tracing paper or a lightbox, transfer the design onto the canvas tote bag.</li></ul></li>\n  <li><b>Embroidery:</b> <ul><li>Secure the canvas in the embroidery hoop (if using).</li><li>Following the transferred design, carefully embroider the bees and flowers using the chosen embroidery floss colors and stitches.</li><li>Use back stitch or satin stitch for outlines and fill stitches for petals and bee bodies.</li></ul></li>\n  <li><b>Finishing:</b> <ul><li>Once the embroidery is complete, carefully remove the tote bag from the hoop.</li><li>Knot and secure all loose embroidery threads on the back of the tote bag.</li><li>Wash the tote bag gently to remove any excess embroidery floss fibers. Air dry.</li></ul></li>\n</ol>\n```\n",
+    "List and image prompt generation time": 22.729455709457397,
+    "Image generation time taken": 15.291995525360107,
+    "Steps generation time taken": 12.446462154388428,
+    "Total time taken": 50.49435567855835
+}

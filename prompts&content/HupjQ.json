@@ -1,0 +1,14 @@
+{
+    "Image id": "HupjQ",
+    "Objects identified": [
+        "plastic water bottle",
+        "plastic bottle cap",
+        "paper label"
+    ],
+    "Image Generation Prompt": "Room decor using recycled plastic bottles, paper, minimalist style",
+    "Steps": "```html\n<ul>\n  <li><strong>Step 1: Preparation</strong></li>\n  <ul>\n    <li>Clean the plastic water bottles and remove labels.</li>\n    <li>Wash and dry the plastic bottle caps.</li>\n  </ul>\n  <li><strong>Step 2: Wall Art Creation</strong></li>\n  <ul>\n    <li>Arrange the cleaned plastic bottles and caps into a desired pattern.</li>\n    <li>Securely attach the bottles to the wall using appropriate adhesive.</li>\n  </ul>\n  <li><strong>Step 3: Adding a Label (Optional)</strong></li>\n  <ul>\n    <li>Create a design for a paper label that reflects the upcycling theme.</li>\n    <li>Attach the label to one of the plastic bottles for added aesthetics.</li>\n  </ul>\n</ul>\n```",
+    "List and image prompt generation time": 32.70000219345093,
+    "Image generation time taken": 15.324354887008667,
+    "Steps generation time taken": 12.755687475204468,
+    "Total time taken": 60.79634356498718
+}

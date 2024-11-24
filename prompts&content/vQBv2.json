@@ -1,0 +1,12 @@
+{
+    "Image id": "vQBv2",
+    "Objects identified": [
+        "canvas tote bag"
+    ],
+    "Image Generation Prompt": "Canvas tote bag wall hanging, bohemian style, macrame",
+    "Steps": "```html\n<ul>\n  <li><b>Step 1:</b> Gather materials: One canvas tote bag, yarn scraps (preferably in black, off-white, and beige), a crochet hook.</li>\n  <li><b>Step 2:</b> Create the fringe: Cut numerous strands of yarn to create the fringe, ensuring sufficient length to hang below the tote bag.</li>\n  <li><b>Step 3:</b> Attach the fringe: Securely attach the fringe to the bottom edge of the tote bag. You might use a crochet chain stitch to attach them evenly or simply knot them in place.</li>\n  <li><b>Step 4:</b> Crochet the design: Using the yarn scraps, crochet a geometric design using black and off-white yarn, creating a central square pattern.</li>\n  <li><b>Step 5:</b> Attach the design:  Carefully attach the crocheted design to the center of the tote bag, using crochet stitches or strong fabric glue.</li>\n  <li><b>Step 6:</b> Add tassels: Create small tassels from the yarn scraps and attach them on the four corners of the crocheted square to finish the design.</li>\n</ul>\n\n```",
+    "List and image prompt generation time": 33.93306040763855,
+    "Image generation time taken": 15.27307939529419,
+    "Steps generation time taken": 12.54774785041809,
+    "Total time taken": 61.77910614013672
+}

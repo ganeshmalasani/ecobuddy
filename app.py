@@ -8,6 +8,7 @@ import time
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Image
 from reportlab.lib.styles import getSampleStyleSheet
+from bs4 import BeautifulSoup
 
 app= Flask(__name__)
 app.secret_key = 'as5efA2y' 
@@ -17,19 +18,17 @@ def generate_random_string():
     random_string = ''.join(random.choices(characters, k=5)) 
     return random_string
 
-def clean_html_content(html_content):
-    import re
+def clean_html_content(html_string):
 
-    # Remove backticks
-    html_content = re.sub(r"`{3,}", "", html_content)  # Remove triple backticks (```)
+    html_string = html_string.replace("```html", "").replace("```", "")
+    
+    
+    cleaned_content = html_string.strip()
 
-    # Remove unnecessary tags if they exist
-    html_content = re.sub(r"<!DOCTYPE html>|<html.*?>|</html>|<head.*?>.*?</head>|<body>|</body>", "", html_content, flags=re.DOTALL)
+    soup = BeautifulSoup(cleaned_content, 'html.parser')
+    cleaned_html = soup.prettify()
 
-    # Strip leading and trailing whitespaces or newlines
-    cleaned_content = html_content.strip()
-
-    return cleaned_content
+    return cleaned_html
 
 def generate_pdf(image_path, contents):
 
@@ -96,9 +95,10 @@ def generate_steps(path,items):
     genai.configure(api_key=GOOGLE_API_KEY)
     image_api=genai.upload_file(path) 
 
-    llm_prompt=f"give steps to Generate the product given in image using these items: {items}. keep in mind, theme is upcycling waste items. just give html fragments not single text, use bold list and other relevant tags wherever necessary no extra text just html fragments, no body, head, doctype tags"
-
-    
+    llm_prompt=f"""give steps to Generate the product given in image using these items: {items}. 
+    keep in mind, theme is upcycling waste items. just give html fragments not single text, 
+    use bold list and other relevant tags wherever necessary no extra text just html fragments, no body, head, doctype tags no escape sequences"""
+   
     model = genai.GenerativeModel("gemini-1.5-flash")
     result = model.generate_content([llm_prompt,image_api])
     return result.text    
@@ -168,8 +168,8 @@ def image_generation():
 
     pdf_path= generate_pdf(generated_image_path,data)
 
-    # html_frags=clean_html_content(steps)
-    html_frags=steps
+    html_frags=clean_html_content(steps)
+    
 
     return render_template('result.html',img_path=final_path,final_steps=html_frags,download_pdf=pdf_path)
 

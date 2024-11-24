@@ -17,6 +17,20 @@ def generate_random_string():
     random_string = ''.join(random.choices(characters, k=5)) 
     return random_string
 
+def clean_html_content(html_content):
+    import re
+
+    # Remove backticks
+    html_content = re.sub(r"`{3,}", "", html_content)  # Remove triple backticks (```)
+
+    # Remove unnecessary tags if they exist
+    html_content = re.sub(r"<!DOCTYPE html>|<html.*?>|</html>|<head.*?>.*?</head>|<body>|</body>", "", html_content, flags=re.DOTALL)
+
+    # Strip leading and trailing whitespaces or newlines
+    cleaned_content = html_content.strip()
+
+    return cleaned_content
+
 def generate_pdf(image_path, contents):
 
     filtered_data = dict(list(contents.items())[:-4])    
@@ -50,7 +64,7 @@ def generate_list(path,usage):
     # llm_prompt=f"Two tasks for you: 
     # Task1 : Identity the objects in the image and give the list of items.Be specific with the material of the objects.No sentences
     # Task2 : Give creative idea on how to use the items in the image for use in {usage}(give image generation prompt which i can give
-    # it to a image generation model) give json like thing so that i can split those 2 tasks"
+    # it to a image generation model) give json like thing so that i can split those 2 tasks PS: keep in mind these domains: Defence and Security, Aeronatics and SPace, Cybersecurity and DIgital Identity"
 
     llm_prompt = f"""
 Task 1: Identify all objects in the image and provide a list of items with their materials. Use a simple list format like: "plastic bag, newspaper, wooden chair". No sentences.
@@ -81,7 +95,7 @@ def generate_steps(path,items):
     genai.configure(api_key=GOOGLE_API_KEY)
     image_api=genai.upload_file(path) 
 
-    llm_prompt=f"give steps to Generate the product given in image using these items: {items}. keep in mind, theme is upcycling waste items."
+    llm_prompt=f"give steps to Generate the product given in image using these items: {items}. keep in mind, theme is upcycling waste items. just give html fragments not single text, use bold list and other relevant tags wherever necessary no extra text just html fragments, no body, head, doctype tags"
 
     
     model = genai.GenerativeModel("gemini-1.5-flash")
@@ -111,7 +125,7 @@ def image_generation():
     
     #Generating image based on the usage and the list of items
     image_generation_time=time.time()
-    client = InferenceClient("black-forest-labs/FLUX.1-dev", token="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")  
+    client = InferenceClient("black-forest-labs/FLUX.1-dev", token="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")  
 
     # image_generation_prompt=f"Generate image using {items} for {usage}"
     generated_image = client.text_to_image(image_generation_prompt)
@@ -149,7 +163,10 @@ def image_generation():
 
     pdf_path= generate_pdf(generated_image_path,data)
 
-    return render_template('result.html',img_path=final_path,final_steps=steps,download_pdf=pdf_path)
+    # html_frags=clean_html_content(steps)
+    html_frags=steps
+
+    return render_template('result.html',img_path=final_path,final_steps=html_frags,download_pdf=pdf_path)
 
 
 if __name__== "__main__":       

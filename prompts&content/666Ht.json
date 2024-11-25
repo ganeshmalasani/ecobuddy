@@ -1,0 +1,27 @@
+{
+    "Image id": "666Ht",
+    "Objects identified": [
+        "milk carton, paper",
+        "phone book, paper",
+        "cardboard box, cardboard",
+        "shipping box, cardboard",
+        "pickle jar, glass",
+        "beer bottle, glass",
+        "wine bottle, glass",
+        "chili sauce can, metal",
+        "soda can, metal",
+        "pie tin, metal",
+        "aluminum foil, metal",
+        "detergent bottle, plastic",
+        "water bottle, plastic",
+        "plastic cup, plastic",
+        "plastic container, plastic",
+        "mustard bottle, plastic"
+    ],
+    "Image Generation Prompt": "Recycled art: robot sculpture made of plastic bottles and cardboard.",
+    "Steps": "```html\n<ul>\n  <li><b>Body:</b> Cardboard box, covered with plastic containers cut and glued to simulate armor plating.</li>\n  <li><b>Head:</b>  Pickle jar, painted and decorated to resemble a robot head. Antennas fashioned from paper.</li>\n  <li><b>Arms and Legs:</b> Detergent bottles cut and reshaped, covered with plastic cups for articulation.  Black caps from bottles used as joints.</li>\n  <li><b>Joints:</b> Pie tins cut and shaped, painted black, glued to arms and legs.</li>\n  <li><b>Details:</b> Aluminum foil used to add metallic accents.</li>\n  <li><b>Eyes:</b> Bottle caps painted to look like eyes.</li>\n</ul>\n```\n",
+    "List and image prompt generation time": 35.979095697402954,
+    "Image generation time taken": 15.1329345703125,
+    "Steps generation time taken": 47.76739501953125,
+    "Total time taken": 98.89230132102966
+}

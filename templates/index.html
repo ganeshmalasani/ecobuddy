@@ -120,11 +120,20 @@
     background-color: #45A049; /* Darker green */
 }
 
+.file-upload{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 /* Style for the "No file chosen" text */
 .file-name {
     margin-left: 15px;
     font-size: 14px;
     color: #555; /* Gray */
+}
+
+.thumbnail-class{
+    border-radius: 8px;
 }
     </style>
 </head>
@@ -135,11 +144,18 @@
     <form action="/generate_image" method="post" enctype="multipart/form-data">
 
         <!-- <input type="file" name="uploaded_image" accept="image/*"> -->
+        
         <div class="file-upload">
-            <input type="file" name="uploaded_image" id="uploadedImage" accept="image/*">
             <label for="uploadedImage" class="custom-file-button">Upload Image</label>
+            <div class="thumbnail-preview" id="thumbnailPreview"></div>
             <span class="file-name">No file chosen</span>
+            <input type="file" name="uploaded_image" id="uploadedImage" accept="image/*">
+            
+            
+            
+           
         </div>
+        
         
 
         <label for="material" class="body-font">ENTER THE INTENDED USAGE</label>
@@ -151,14 +167,37 @@
 </div>
 
 <script>
-    const fileInput = document.getElementById("uploadedImage");
-const fileNameSpan = document.querySelector(".file-name");
+  const fileInput = document.getElementById("uploadedImage");
+    const fileNameSpan = document.querySelector(".file-name");
+    const thumbnailPreview = document.getElementById("thumbnailPreview");
 
-fileInput.addEventListener("change", function () {
-    const fileName = this.files[0]?.name || "No file chosen";
-    fileNameSpan.textContent = fileName;
-});
+    fileInput.addEventListener("change", function () {
+        const file = this.files[0];
 
+        // Update file name
+        const fileName = file?.name || "No file chosen";
+        fileNameSpan.textContent = fileName;
+
+        // Clear previous thumbnail if any
+        thumbnailPreview.innerHTML = "";
+
+        // Check if file is valid
+        if (file && file.type.startsWith("image/")) {
+            const reader = new FileReader();
+
+            reader.onload = function (event) {
+                const img = document.createElement("img");
+                img.src = event.target.result;
+                img.className = "thumbnail-class";
+                img.alt = "Thumbnail";
+                img.style.maxWidth = "100px";
+                img.style.maxHeight = "100px";
+                thumbnailPreview.appendChild(img);
+            };
+
+            reader.readAsDataURL(file); // Read the file as a data URL
+        }
+    });
 </script>
 </body>
 </html>

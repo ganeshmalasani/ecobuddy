@@ -1,0 +1,14 @@
+{
+    "Image id": "jnU1u",
+    "Objects identified": [
+        "water bottle, plastic",
+        "water, liquid",
+        "label, plastic"
+    ],
+    "Image Generation Prompt": "Living room with bioluminescent water bottle lamps, cozy atmosphere.",
+    "Steps": "```html\n<ol>\n  <li><strong>Fill the plastic water bottle with liquid water.</strong></li>\n  <li><strong>Attach the plastic label to the water bottle.</strong></li>\n</ol>\n```\n",
+    "List and image prompt generation time": 11.895280122756958,
+    "Image generation time taken": 4.624224424362183,
+    "Steps generation time taken": 12.005460977554321,
+    "Total time taken": 28.5538969039917
+}
